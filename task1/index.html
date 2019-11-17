@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Loop 1 - Step 1</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <div id="container" class="container">
+            <div class="item">
+                <div class="item_image" style="background-image: url(./img/device.svg)"></div>
+
+                <div class="item_title">Mobile</div>
+
+                <div class="item_description">
+                    Get notifications about new releases in our mobile app.
+                </div>
+
+                <div class="item_price">
+                    <sup>$</sup><span class="item_price-amount">10</span> / month
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_image" style="background-image: url(./img/laptop.svg)"></div>
+
+                <div class="item_title">Desktop</div>
+
+                <div class="item_description">
+                    Enjoy new episodes on your laptop in browser with our web service, which supports all the platforms.
+                </div>
+
+                <div class="item_price">
+                    <sup>$</sup><span class="item_price-amount">15</span> / month
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item_image" style="background-image: url(./img/monitor.svg)"></div>
+
+                <div class="item_title">TV</div>
+
+                <div class="item_description">
+                    Watch your favorite series at home on large screen with our TV application.
+                </div>
+
+                <div class="item_price">
+                    <sup>$</sup><span class="item_price-amount">20</span> / month
+                </div>
+            </div>
+        </div>
+        <div id="modal">
+            <div class="modal">
+                <div class="modal_title">Confirmation</div>
+                <div class="modal_content"></div>
+                <button class="modal_button">Confirm and pay</button>
+                <button class="modal_close"></button>
+            </div>
+        </div>
+        <script>
+         var $elem = document.getElementById('container'),
+             $modal = document.getElementById('modal');
+
+         $elem.addEventListener('click', function(e) {
+             let $item = e.target.closest('.item');
+
+             if (!$item)
+                 return false;
+
+             let $modalContent = document.getElementsByClassName('modal_content')[0];
+             $modalContent.innerHTML = $item.innerHTML;
+             $modalContent.closest('#modal').classList.add('active');
+         });
+
+         $modal.addEventListener('click', function(e) {
+             if (e.target.closest('.modal_close') || !e.target.closest('.modal'))
+                 this.classList.remove('active');
+         });
+        </script>
+    </body>
+</html>
